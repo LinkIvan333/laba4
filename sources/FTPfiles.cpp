@@ -23,7 +23,7 @@ string FTPfiles::getLatestDate(const string &date1, const string &date2) {
 
 void FTPfiles::printFinFile(const path &p,
                   map<string, pair <unsigned int, string>>& accounts) {
-    if(p.stem().string().length() >= 25) {
+    if (p.stem().string().length() >= 25) {
         file file;
         file.name = p.stem().string();
         file.balance = file.name.substr(0, 8);
@@ -31,7 +31,8 @@ void FTPfiles::printFinFile(const path &p,
         file.separator = file.name.substr(16, 1);
         file.date = file.name.substr(17, 8);
         file.type = p.extension().string();
-        if (file.balance == "balance_" && stoi(file.number) && file.separator == "_"
+        if (file.balance == "balance_" && stoi(file.number) &&
+        file.separator == "_"
             && stoi(file.date) && file.type == ".txt"
             && file.name.substr(file.name.length()-4, 4) != ".old") {
             std::cout << p.parent_path().string().substr(pz) + " " +
@@ -51,7 +52,8 @@ void FTPfiles::printAccountsInfo(const path &path_to_dir,
                        map<string, pair <unsigned int, string>>& accounts) {
     for (const directory_entry& obj :
     recursive_directory_iterator(path_to_dir)) {
-        if (is_regular_file(obj.path()) && obj.path().stem().string().length() >= 25) {
+        if (is_regular_file(obj.path()) &&
+        obj.path().stem().string().length() >= 25) {
             file file;
             file.name = obj.path().stem().string();
             file.balance = file.name.substr(0, 8);
